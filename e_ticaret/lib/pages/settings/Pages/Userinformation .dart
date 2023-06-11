@@ -5,7 +5,6 @@ import 'package:e_ticaret/pages/settings/widget/Kullan%C4%B1c%C4%B1Colum.dart';
 import 'package:e_ticaret/style/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 class Userinformation extends StatefulWidget {
   User? user;
   Userinformation(this.user, {super.key});
@@ -77,7 +76,7 @@ class _UserinformationState extends State<Userinformation> {
                 _email),
             kullaniciColum(
                 "Şifre",
-               const  Icon(
+                const Icon(
                   Icons.password,
                   color: Colors.grey,
                 ),
@@ -88,4 +87,3 @@ class _UserinformationState extends State<Userinformation> {
     );
   }
 }
-

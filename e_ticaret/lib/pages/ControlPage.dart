@@ -1,5 +1,9 @@
+// ignore_for_file: file_names, must_be_immutable
+
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:e_ticaret/pages/Category/Category.dart';
 import 'package:e_ticaret/pages/settings/Pages/Settings.dart';
 import 'package:e_ticaret/service/Function.dart';
 import 'package:e_ticaret/style/color.dart';
@@ -74,7 +78,7 @@ class _ControlPageState extends State<ControlPage> {
             setState(() => _currentIndex = index);
           },
           children: <Widget>[
-            const HomePage(),
+            const Category(),
             const Favorites(),
             const Basket(),
             settings(widget.user)
@@ -174,6 +178,7 @@ class MenuItems extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text("Home"),
             onTap: () {
+              
               /*Navigator.push(context,
                   MaterialPageRoute(builder: ((context) =>  HomePage()))); */
             },

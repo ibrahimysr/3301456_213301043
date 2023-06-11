@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_ticaret/service/Function.dart';
@@ -12,7 +13,7 @@ Widget CoffeCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
       child: GestureDetector(
         onTap: ontap,
         child: Container(
-          height: 240,
+          height: 150,
           width: 140,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -23,10 +24,10 @@ Widget CoffeCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 14, top: 10),
+                  padding: const EdgeInsets.only(top: 10, left: 20),
                   child: Container(
-                    height: 142,
-                    width: 140,
+                    height: 150,
+                    width: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
@@ -42,15 +43,15 @@ Widget CoffeCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
                   padding: const EdgeInsets.only(left: 16),
                   child: Text(doc["isim"],
                       style:
-                          const TextStyle(fontSize: 18, color: Colors.white)),
+                          const TextStyle(fontSize: 20, color: Colors.white)),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Text(doc["detay"],
-                      style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                      style: const TextStyle(fontSize: 18, color: Colors.grey)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 12, left: 12),
+                  padding: const EdgeInsets.only(top: 3, left: 12),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -60,11 +61,11 @@ Widget CoffeCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
                           Text(
                             doc["fiyat"],
                             style: const TextStyle(
-                                fontSize: 18, color: Colors.white),
+                                fontSize: 22, color: Colors.white),
                           ),
                           const Text(
                             "₺",
-                            style: TextStyle(fontSize: 18, color: EnabledColor),
+                            style: TextStyle(fontSize: 23, color: EnabledColor),
                           ),
                         ]),
                       ),
@@ -76,14 +77,11 @@ Widget CoffeCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
                                   content:
                                       Text("Ürününüz Favorilere Eklendi")));
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Lottie.network(
-                                "https://assets8.lottiefiles.com/temp/lf20_Q4ruhe.json"),
-                          ),
+                        child: SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: Lottie.network(
+                              "https://assets8.lottiefiles.com/temp/lf20_Q4ruhe.json"),
                         ),
                       ),
                     ],

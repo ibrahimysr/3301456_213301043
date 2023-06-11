@@ -1,12 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_ticaret/widget/coffe_card.dart';
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_ticaret/pages/Category/widget/CategoryContainer.dart';
+import 'package:e_ticaret/pages/Category/widget/ImageList.dart';
+import 'package:e_ticaret/pages/Category/widget/buildImage.dart';
+import 'package:e_ticaret/style/color.dart';
 import 'package:flutter/material.dart';
-import '../Details.dart';
+
+import '../HomePage.dart';
 
 class Category extends StatefulWidget {
-  String firebaseName;
-  String name = "";
-  Category(this.firebaseName, this.name, {super.key});
+  const Category({super.key});
 
   @override
   State<Category> createState() => _CategoryState();
@@ -15,41 +19,34 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: StreamBuilder<QuerySnapshot>(
-          stream: (widget.name != "" && widget.name != null)
-              ? FirebaseFirestore.instance
-                  .collection(widget.firebaseName)
-                  .where("Arama", arrayContains: widget.name)
-                  .snapshots()
-              : FirebaseFirestore.instance
-                  .collection(widget.firebaseName)
-                  .snapshots(),
-          builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (snapshot.hasData) {
-              return GridView(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1.6 / 2.5,
-                    crossAxisSpacing: 10),
-                children: snapshot.data!.docs
-                    .map((kahve) => CoffeCard(() {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailsScreen(kahve)));
-                        }, kahve, context))
-                    .toList(),
-              );
-            }
-            return const Text("Veri yok");
-          }),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Appcolor,
+        body: ListView(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 15),
+              child: Center(
+                child: Text(
+                  "Kategoriler",
+                  style: TextStyle(
+                      color: TextColor, fontSize: 40, fontFamily: 'Schyler'),
+                ),
+              ),
+            ),
+            Expanded(
+                child: Column(
+              children: [
+                CategoryContainer(SicaklarUrl, "Sıcak", context),
+                CategoryContainer(CorbalarUrl, "Çorba", context),
+                CategoryContainer(TatlilarUrl, "Tatlı", context),
+                CategoryContainer(yemekUrl, "Yemek", context),
+                CategoryContainer(MilkshakelarUrl, "Milkshake", context),
+              ],
+            ))
+          ],
+        ),
+      ),
     );
   }
 }

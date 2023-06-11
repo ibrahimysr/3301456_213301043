@@ -1,12 +1,13 @@
+// ignore_for_file: file_names, use_build_context_synchronously
+
 import 'package:e_ticaret/pages/Login/Pages/Registerpage.dart';
 import 'package:e_ticaret/pages/Login/widget/Container.dart';
 import 'package:e_ticaret/pages/Login/widget/Loginbutton.dart';
 import 'package:e_ticaret/pages/Login/widget/Textfield.dart';
 import 'package:e_ticaret/pages/settings/Pages/ResetPassword.dart';
 import 'package:e_ticaret/style/color.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../ControlPage.dart';
+import 'package:provider/provider.dart';
 import '../loginService/function.dart';
 
 class LoginPage extends StatefulWidget {
@@ -105,7 +106,11 @@ class _LoginPageState extends State<LoginPage> {
                           LoginButton(
                             "Giriş Yap",
                             () async {
-                              User? user = await loginFunction(
+                              context.read<FlutterFireAuthService>().SignIn(
+                                  _email.text.trim(),
+                                  _password.text.trim(),
+                                  context);
+                              /*User? user = await loginFunction(
                                   _email.text, _password.text, context);
                               if (user != null) {
                                 Navigator.pushReplacement(
@@ -114,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                                         builder: (context) =>
                                             ControlPage(user)));
                               }
+                              */
                             },
                           ),
                           Padding(

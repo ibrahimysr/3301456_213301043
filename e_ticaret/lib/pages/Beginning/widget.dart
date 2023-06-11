@@ -1,3 +1,6 @@
+
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../style/color.dart';
@@ -17,7 +20,7 @@ class BeginContainer extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 28, color: TextColor, fontFamily: 'Schyler'),
             ),
             Padding(

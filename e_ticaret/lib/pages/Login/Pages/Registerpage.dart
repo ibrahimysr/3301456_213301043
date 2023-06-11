@@ -1,4 +1,8 @@
+// ignore_for_file: file_names
+
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../service/Function.dart';
 import '../../../style/color.dart';
 import '../loginService/function.dart';
@@ -93,7 +97,12 @@ class _RegisterState extends State<Register> {
                           LoginButton(
                             "Kayıt Ol",
                             () {
-                              Signup(_email, _password, _username, context);
+                              context.read<FlutterFireAuthService>().SignUp(
+                                  _email.text.trim(),
+                                  _password.text.trim(),
+                                  _username.text.trim(),
+                                  context);
+                              //Signup(_email, _password, _username, context);
                               LocalVeriekle(_username.text, _email.text);
                               Navigator.push(
                                   context,

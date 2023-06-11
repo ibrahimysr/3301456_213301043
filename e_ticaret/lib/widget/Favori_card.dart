@@ -1,6 +1,7 @@
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_ticaret/service/Function.dart';
+import 'package:e_ticaret/widget/DeleteButton.dart';
 import 'package:flutter/material.dart';
 
 import '../style/color.dart';
@@ -17,53 +18,16 @@ Widget FavoriCard(Function()? ontap, QueryDocumentSnapshot doc, context) {
           child: Padding(
             padding: const EdgeInsets.all(6.0),
             child: ListTile(
-              leading: CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage(
-                      "assets/${doc.data().toString().contains("detay") ? doc.get("detay") : ""}.jpg")),
-              title: Text(
-                  doc.data().toString().contains("isim") ? doc.get("isim") : "",
-                  style: const TextStyle(fontSize: 20, color: TextColor)),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                color: Colors.red,
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: Appcolor2,
-                          title: const Text(
-                            "Silmek İstiyormusunuz",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          content: const Text("Ürün Favorilerden Kaldırılıcak",
-                              style: TextStyle(color: Colors.white)),
-                          actions: [
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: EnabledColor),
-                                onPressed: () {
-                                  deleteData(doc.id, "Favoriler");
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text("Ürün Kaldırıldı")));
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Evet")),
-                            ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: EnabledColor),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text("Hayır")),
-                          ],
-                        );
-                      });
-                },
-              ),
-            ),
+                leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: AssetImage(
+                        "assets/${doc.data().toString().contains("detay") ? doc.get("detay") : ""}.jpg")),
+                title: Text(
+                    doc.data().toString().contains("isim")
+                        ? doc.get("isim")
+                        : "",
+                    style: const TextStyle(fontSize: 20, color: TextColor)),
+                trailing: DeleteButton(doc, context, "Favoriler")),
           ),
         ),
       ]),

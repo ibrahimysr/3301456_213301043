@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../service/Function.dart';
@@ -5,7 +7,8 @@ import '../../widget/seper_card.dart';
 import '../Details.dart';
 
 class BasketStream extends StatefulWidget {
-  const BasketStream({Key? key}) : super(key: key);
+
+ const BasketStream({Key? key}) : super(key: key);
 
   @override
   State<BasketStream> createState() => _BasketStreamState();

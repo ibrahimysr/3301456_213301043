@@ -1,3 +1,4 @@
+// ignore_for_file: file_names, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_ticaret/service/BilgilerDao.dart';
@@ -65,6 +66,20 @@ Future passwordReset(String email, BuildContext context) async {
         });
   }
 }
+
+
+Future<void> deleteAllDocuments() async {
+  final collectionRef = FirebaseFirestore.instance.collection('Sepet');
+  final documents = await collectionRef.get();
+
+  for (var document in documents.docs) {
+    await document.reference.delete();
+  }
+}
+
+
+
+
 
 
 

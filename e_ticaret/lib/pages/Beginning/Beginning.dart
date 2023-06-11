@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:e_ticaret/pages/Beginning/widget.dart';
 import 'package:e_ticaret/style/color.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class BeginningPage extends StatefulWidget {
 }
 
 class _BeginningPageState extends State<BeginningPage> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   bool _LastPage = false;
   @override
@@ -36,7 +38,7 @@ class _BeginningPageState extends State<BeginningPage> {
           ],
         ),
         Container(
-          alignment: Alignment(0, 0.7),
+          alignment: const Alignment(0, 0.7),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -73,6 +75,9 @@ class _BeginningPageState extends State<BeginningPage> {
                       ))
                   : GestureDetector(
                       onTap: () {
+                       
+                       
+
                         _controller.nextPage(
                             duration: const Duration(milliseconds: 500),
                             curve: Curves.easeIn);

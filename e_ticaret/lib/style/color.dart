@@ -1,4 +1,6 @@
 
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 const Color Appcolor = Color(0xff0C0F14);

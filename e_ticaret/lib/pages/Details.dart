@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, must_be_immutable, non_constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_ticaret/service/Function.dart';
 import 'package:e_ticaret/style/color.dart';

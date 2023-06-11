@@ -1,6 +1,7 @@
-// ignore_for_file: must_be_immutable, file_names
+// ignore_for_file: must_be_immutable, file_names, camel_case_types
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../style/color.dart';
 import '../widget/SettingListColumn.dart';
 
@@ -13,12 +14,13 @@ class settings extends StatefulWidget {
 }
 
 class _settingsState extends State<settings> {
+
   @override
   Widget build(BuildContext context) {
+   
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          
           child: ConstrainedBox(
             constraints:
                 BoxConstraints(maxHeight: MediaQuery.of(context).size.height),

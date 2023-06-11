@@ -1,4 +1,6 @@
-import 'dart:async';
+// ignore_for_file: file_names
+
+import 'package:e_ticaret/pages/Payment/Location.dart';
 import 'package:e_ticaret/style/color.dart';
 import 'package:flutter/material.dart';
 import 'BasketStreambuilder.dart';
@@ -28,8 +30,8 @@ class _BasketState extends State<Basket> {
           children: [
             SingleChildScrollView(
               child: Column(
-                children: const [
-                  Padding(
+                children:  const [
+                   Padding(
                     padding: EdgeInsets.all(15.0),
                     child: Center(
                       child: Text(
@@ -41,14 +43,17 @@ class _BasketState extends State<Basket> {
                       ),
                     ),
                   ),
-                  BasketStream()
+                   BasketStream()
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 5, right: 5, bottom: 16),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Location()));
+                },
                 child: Container(
                   height: 50,
                   width: 300,

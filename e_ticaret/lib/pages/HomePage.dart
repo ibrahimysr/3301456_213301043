@@ -1,11 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:e_ticaret/style/color.dart';
 import 'package:e_ticaret/widget/kategory_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'Category/Category.dart';
+import 'Category/CategoryStream.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  String CategoryName;
+  HomePage(this.CategoryName, {Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,15 +18,16 @@ class _HomePageState extends State<HomePage> {
   TextEditingController arama = TextEditingController();
 
   int index = 0;
-  bool selectbutonone = true;
-  bool selectbuttontwo = false;
-  bool selectbuttonthre = false;
+
   String name = "";
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scaffoldKey,
         backgroundColor: Appcolor,
         body: SingleChildScrollView(
           child: Column(
@@ -43,7 +47,11 @@ class _HomePageState extends State<HomePage> {
                       width: 44,
                       child: IconButton(
                           onPressed: () {
-                            Scaffold.of(context).openDrawer();
+                            if (scaffoldKey.currentState!.isDrawerOpen) {
+                              scaffoldKey.currentState!.closeDrawer();
+                            } else {
+                              scaffoldKey.currentState!.openDrawer();
+                            }
                           },
                           icon: const Icon(
                             Icons.menu,
@@ -77,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                   left: 33,
                 ),
                 child: Text(
-                  "İçecekler Senin İçin",
+                  "Bu Lezzetler Senin İçin",
                   style: TextStyle(
                       color: TextColor, fontSize: 30, fontFamily: 'Schyler'),
                 ),
@@ -122,65 +130,10 @@ class _HomePageState extends State<HomePage> {
                 height: 28,
               ),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 36),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        KategoryButton("Sıcaklar", () {
-                          setState(() {
-                            index = 0;
-                            selectbutonone = !selectbutonone;
-                            selectbuttonthre = false;
-                            selectbuttontwo = false;
-                          });
-                        }, selectbutonone),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 27, right: 27),
-                          child: KategoryButton("Soğuklar", () {
-                            setState(() {
-                              index = 1;
-                              selectbuttontwo = !selectbuttontwo;
-                              selectbutonone = false;
-                              selectbuttonthre = false;
-                            });
-                          }, selectbuttontwo),
-                        ),
-                        KategoryButton("Milkshake", () {
-                          setState(() {
-                            index = 2;
-                            selectbuttonthre = !selectbuttonthre;
-                            selectbutonone = false;
-                            selectbuttontwo = false;
-                          });
-                        }, selectbuttonthre),
-                      ],
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   height: 21,
                 ),
-                IndexedStack(
-                  index: index,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Category("Espresso", name),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Category("Soguklar", name),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
-                      child: Category("milkshake", name),
-                    )
-                  ],
-                )
+                CategoryStream(widget.CategoryName, name),
               ])
             ],
           ),

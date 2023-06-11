@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:e_ticaret/style/color.dart';
 import 'package:flutter/material.dart';
 

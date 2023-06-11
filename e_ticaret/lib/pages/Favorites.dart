@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_ticaret/style/color.dart';
 import 'package:e_ticaret/widget/Favori_card.dart';
